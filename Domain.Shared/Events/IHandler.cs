@@ -1,6 +1,6 @@
 namespace Domain.Shared.Events
 {
-    public interface IHandler
+    public interface IHandler<T> where T:Message
     {
          
     }
