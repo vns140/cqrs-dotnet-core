@@ -5,10 +5,10 @@ namespace Domain.Commands
 {
     public class UpdateCarCommand : CarCommand
     {
-        public UpdateCarCommand(Guid id, string nome, decimal price, EStatus status)
+        public UpdateCarCommand(Guid id, string name, decimal price, EStatus status)
         {
             ID = id;
-            Nome = nome;
+            Name = name;
             Price = price;
             Status = status;
         }

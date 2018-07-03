@@ -5,7 +5,7 @@ namespace Domain.Commands
 {
     public abstract class CarCommand : Command
     {
-        public string Nome { get; protected set; }
+        public string Name { get; protected set; }
         
         public decimal Price { get; protected set; }
     }

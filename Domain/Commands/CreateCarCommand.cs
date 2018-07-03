@@ -5,9 +5,9 @@ namespace Domain.Commands
 {
     public class CreateCarCommand : CarCommand
     {
-        public CreateCarCommand(string nome,decimal price, EStatus status, Guid tenant)
+        public CreateCarCommand(string name,decimal price, EStatus status, Guid tenant)
         {
-            Nome = nome;
+            Name = name;
             Price = price;
             Status = status;
             Tenant = tenant;
