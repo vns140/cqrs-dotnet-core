@@ -3,7 +3,7 @@ using static Domain.Shared.EntityEnum;
 
 namespace Domain.Commands
 {
-    public abstract class CarCommand : Command
+    public abstract class BaseCarCommand : Command
     {
         public string Name { get; protected set; }
         

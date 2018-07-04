@@ -2,7 +2,7 @@ using System;
 
 namespace Domain.Commands
 {
-    public class DeleteCarCommand : CarCommand
+    public class DeleteCarCommand : BaseCarCommand
     {
         public DeleteCarCommand(Guid id)
         {

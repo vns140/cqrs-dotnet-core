@@ -7,7 +7,7 @@ namespace Domain.Shared.Entities
     public abstract class Entity : InfoValidator
     {        
         protected Entity() { }
-        public Entity(EStatus status, object tenant = null, object id = null)
+        protected Entity(EStatus status, object tenant = null, object id = null)
         {
             if (id == null)
             {

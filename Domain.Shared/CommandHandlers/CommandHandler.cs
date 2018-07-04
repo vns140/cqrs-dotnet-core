@@ -29,7 +29,7 @@ namespace Domain.Shared.CommandHandlers
             var commandResponse =  _uow.Commit();
             if(commandResponse.Success) return true;
 
-            Console.WriteLine("Ocorreu um erro ao salvar os dados no banco", ConsoleColor.Red);
+            Console.WriteLine("Ocorreu um erro ao salvar os dados no banco.", ConsoleColor.Red);
             return false;
         }
     }

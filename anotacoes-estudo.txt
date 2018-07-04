@@ -1,0 +1,4 @@
+Events =>  tudo que é disparado é um evento, todo evento é uma Mensagem.
+
+*Verificar reutilização de propriedades (BaseCarEvent e BaseCarCommand)
+

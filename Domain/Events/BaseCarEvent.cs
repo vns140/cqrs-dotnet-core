@@ -2,7 +2,7 @@ using Domain.Shared.Events;
 
 namespace Domain.Events
 {
-    public class CarEvent : Event
+    public abstract class BaseCarEvent : Event
     {
         public string Name { get; protected set; }
         

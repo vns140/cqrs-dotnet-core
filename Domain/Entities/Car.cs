@@ -6,7 +6,7 @@ namespace Domain.Entities
 {
     public class Car : Entity
     {
-        public Car(string name, decimal price, EStatus status, object tenant = null, object id = null) : base(status, tenant, id)
+        public Car(string name, decimal price, EStatus status, object tenant , object id = null) : base(status, tenant, id)
         {
             Name = name;
             Price = price;

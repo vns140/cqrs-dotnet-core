@@ -1,3 +1,4 @@
+using System;
 using Domain.Commands;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
@@ -29,16 +30,17 @@ namespace Domain.CommandHandlers
                 NotificationValidationError(car.Erros);
                 return;
             }
+            
             //TODO:
             //Validação de Negócio
-            //exemplo : Um motorsta é maior de 18?
+            //exemplo : Esse carro já existe com o mesmo nome?
 
             //persistencia
             _carRepository.Create(car);
 
             if(Commit())
             {
-                //Notificar processo concluído
+                Console.WriteLine("Evento registrado com sucesso.");
             }
         }
         public void Handle(UpdateCarCommand message)

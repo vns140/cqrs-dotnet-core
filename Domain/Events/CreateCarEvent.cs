@@ -4,16 +4,16 @@ using static Domain.Shared.EntityEnum;
 
 namespace Domain.Events
 {
-    public class CarCreateEvent : CarEvent
+    public class CreateCarEvent : BaseCarEvent
     {
-        public CarCreateEvent(Guid id, string name, decimal price, EStatus status)
+        public CreateCarEvent(Guid id, string name, decimal price, EStatus status, Guid tenant)
         {
             ID = id;
             Name = name;
             Price = price;
             Status = status;
+            Tenant = tenant;
             AggregateID = id;
         }
-        
     }
 }
