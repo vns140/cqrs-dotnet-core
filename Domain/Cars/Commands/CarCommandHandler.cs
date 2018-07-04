@@ -9,7 +9,7 @@ using Domain.Shared.Events;
 using Domain.Shared.Interfaces.Repositories;
 using Domain.Shared.Notifications;
 
-namespace Domain.CommandHandlers.Cars
+namespace Domain.Commands.Cars
 {
     public class CarCommandHandler : CommandHandler,
     IHandler<CreateCarCommand>,
@@ -30,13 +30,9 @@ namespace Domain.CommandHandlers.Cars
 
         public void Handle(CreateCarCommand message)
         {
-            var car = new Car(message.Name, message.Price, message.Status, message.Tenant, message.ID);
+            var car = Car.Factory.NewCreate(message.Name, message.Price, message.Status, message.Tenant);
 
-            if (!car.IsValid())
-            {
-                NotificationValidationError(car.Erros);
-                return;
-            }
+            if (!IsValid(car)) return;            
 
             //TODO:
             //Validação de Negócio
@@ -47,17 +43,42 @@ namespace Domain.CommandHandlers.Cars
 
             if (Commit())
             {
-                Console.WriteLine("Evento registrado com sucesso.");
+                Console.WriteLine("Car register with success.");
                 _bus.RaiseEvent(new CreateCarEvent(car.ID, car.Name, car.Price, car.Status, car.Tenant));
             }
         }
         public void Handle(UpdateCarCommand message)
         {
-            throw new System.NotImplementedException();
+            var car = Car.Factory.NewUpdate(message.Name, message.Price, message.Status, message.Tenant, message.ID);
+
+            if (!IsValid(car)) return;  
+
+            //TODO:
+            //Validação de Negócio
+            //exemplo : Esse carro já existe com o mesmo nome?
+
+            //persistencia
+            _carRepository.Update(car, message.ID);
+
+            if (Commit())
+            {
+                Console.WriteLine("Car update with success.");
+                _bus.RaiseEvent(new UpdateCarEvent(car.ID, car.Name, car.Price, car.Status));
+            }
         }
         public void Handle(DeleteCarCommand message)
         {
             throw new System.NotImplementedException();
+        }
+
+        private bool IsValid(Car car)
+        {
+            if (car.IsValid()) return true;
+            else
+            {
+                NotificationValidationError(car.Erros);
+                return false;
+            } 
         }
     }
 }

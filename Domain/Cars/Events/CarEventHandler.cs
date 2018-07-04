@@ -1,7 +1,7 @@
 using Domain.Events.Cars;
 using Domain.Shared.Events;
 
-namespace Domain.EventHandlers.Cars
+namespace Domain.Events.Cars
 {
     public class CarEventHandler :
     IHandler<CreateCarEvent>,
