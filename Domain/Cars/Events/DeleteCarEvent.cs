@@ -6,7 +6,7 @@ namespace Domain.Events.Cars
 {
     public class DeleteCarEvent : BaseCarEvent
     {
-        public DeleteCarEvent(Guid id)
+        public DeleteCarEvent(object id)
         {
             ID = id;
             AggregateID = id;

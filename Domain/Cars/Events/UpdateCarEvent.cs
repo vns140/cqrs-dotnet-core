@@ -6,7 +6,7 @@ namespace Domain.Events.Cars
 {
     public class UpdateCarEvent : BaseCarEvent
     {
-        public UpdateCarEvent(Guid id, string name, decimal price, EStatus status)
+        public UpdateCarEvent(object id, string name, decimal price, EStatus status)
         {
             ID = id;
             Name = name;
