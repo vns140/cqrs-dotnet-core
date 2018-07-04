@@ -3,7 +3,7 @@ using Domain.Shared.Interfaces.Repositories;
 
 namespace Domain.Interfaces.Repositories.Cars
 {
-    public interface ICarRepository : IRepositoryShared<Car>
+    public interface ICarRepository : IRepository<Car>
     {
         
     }

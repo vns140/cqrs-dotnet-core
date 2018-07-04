@@ -7,7 +7,7 @@ using Domain.Shared.ObjectValues;
 
 namespace Domain.Shared.Interfaces.Repositories
 {
-    public interface IRepositoryShared<T> where T : class
+    public interface IRepository<T> where T : class
     {
         /// <summary>
         /// Cria um registro.
