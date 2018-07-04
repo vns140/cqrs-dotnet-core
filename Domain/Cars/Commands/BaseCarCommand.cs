@@ -1,7 +1,7 @@
 using Domain.Shared.Commands;
 using static Domain.Shared.EntityEnum;
 
-namespace Domain.Commands
+namespace Domain.Commands.Cars
 {
     public abstract class BaseCarCommand : Command
     {

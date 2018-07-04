@@ -1,7 +1,7 @@
 using System;
 using static Domain.Shared.EntityEnum;
 
-namespace Domain.Commands
+namespace Domain.Commands.Cars
 {
     public class UpdateCarCommand : BaseCarCommand
     {

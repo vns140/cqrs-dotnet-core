@@ -2,7 +2,7 @@ using Domain.Shared;
 using Domain.Shared.Entities;
 using static Domain.Shared.EntityEnum;
 
-namespace Domain.Entities
+namespace Domain.Entities.Cars
 {
     public class Car : Entity
     {

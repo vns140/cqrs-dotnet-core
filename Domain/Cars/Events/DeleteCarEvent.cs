@@ -2,7 +2,7 @@ using System;
 using Domain.Events;
 using static Domain.Shared.EntityEnum;
 
-namespace Domain.Events
+namespace Domain.Events.Cars
 {
     public class DeleteCarEvent : BaseCarEvent
     {

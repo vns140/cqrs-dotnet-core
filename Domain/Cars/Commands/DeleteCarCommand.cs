@@ -1,6 +1,6 @@
 using System;
 
-namespace Domain.Commands
+namespace Domain.Commands.Cars
 {
     public class DeleteCarCommand : BaseCarCommand
     {

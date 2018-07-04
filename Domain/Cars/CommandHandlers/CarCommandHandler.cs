@@ -1,12 +1,12 @@
 using System;
-using Domain.Commands;
-using Domain.Entities;
-using Domain.Interfaces.Repositories;
+using Domain.Commands.Cars;
+using Domain.Entities.Cars;
+using Domain.Interfaces.Repositories.Cars;
 using Domain.Shared.CommandHandlers;
 using Domain.Shared.Events;
 using Domain.Shared.Interfaces.Repositories;
 
-namespace Domain.CommandHandlers
+namespace Domain.CommandHandlers.Cars
 {
     public class CarCommandHandler : CommandHandler,
     IHandler<CreateCarCommand>,

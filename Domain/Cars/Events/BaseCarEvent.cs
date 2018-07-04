@@ -1,6 +1,6 @@
 using Domain.Shared.Events;
 
-namespace Domain.Events
+namespace Domain.Events.Cars
 {
     public abstract class BaseCarEvent : Event
     {
