@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Domain.Commands.Cars;
 using Domain.Entities.Cars;
 using Domain.Events.Cars;
@@ -28,18 +29,17 @@ namespace Domain.Commands.Cars
             _bus = bus;
         }
 
-        public void Handle(CreateCarCommand message)
+        public async Task HandleAsync(CreateCarCommand message)
         {
             var car = Car.Factory.NewCreate(message.Name, message.Price, message.Status, message.Tenant);
 
-            if (!IsValid(car)) return;            
+            if (!IsValid(car)) return;
 
             //TODO:
             //Validação de Negócio
             //exemplo : Esse carro já existe com o mesmo nome?
 
-            //persistencia
-            _carRepository.Create(car);
+            await _carRepository.CreateAsync(car);
 
             if (Commit())
             {
@@ -47,17 +47,19 @@ namespace Domain.Commands.Cars
                 _bus.RaiseEvent(new CreateCarEvent(car.ID, car.Name, car.Price, car.Status, car.Tenant));
             }
         }
-        public void Handle(UpdateCarCommand message)
+        public async Task HandleAsync(UpdateCarCommand message)
         {
+
+            if (!await Exist(message.ID, message.MessageType)) return;
+
             var car = Car.Factory.NewUpdate(message.Name, message.Price, message.Status, message.Tenant, message.ID);
 
-            if (!IsValid(car)) return;  
+            if (!IsValid(car)) return;
 
             //TODO:
             //Validação de Negócio
             //exemplo : Esse carro já existe com o mesmo nome?
 
-            //persistencia
             _carRepository.Update(car, message.ID);
 
             if (Commit())
@@ -66,9 +68,17 @@ namespace Domain.Commands.Cars
                 _bus.RaiseEvent(new UpdateCarEvent(car.ID, car.Name, car.Price, car.Status));
             }
         }
-        public void Handle(DeleteCarCommand message)
+        public async Task HandleAsync(DeleteCarCommand message)
         {
-            throw new System.NotImplementedException();
+            if (!await Exist(message.ID, message.MessageType)) return;
+
+            await _carRepository.DeleteAsync(message.ID);
+
+            if (Commit())
+            {
+                Console.WriteLine("Car delete with success.");
+                _bus.RaiseEvent(new DeleteCarEvent(message.ID));
+            }
         }
 
         private bool IsValid(Car car)
@@ -78,7 +88,16 @@ namespace Domain.Commands.Cars
             {
                 NotificationValidationError(car.Erros);
                 return false;
-            } 
+            }
+        }
+
+        private async Task<bool> Exist(object id, string messageType)
+        {
+            var car = await _carRepository.GetAsync(id);
+            if (car != null) return true;
+
+            _bus.RaiseEvent(new DomainNotification(messageType, "Car not found."));
+            return false;
         }
     }
 }
