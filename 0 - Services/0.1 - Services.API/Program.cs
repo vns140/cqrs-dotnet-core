@@ -9,10 +9,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
 
-namespace Fujitsu.Funeral.Application
+namespace Services.API
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             // NLog: setup the logger first to catch all errors
@@ -35,6 +42,11 @@ namespace Fujitsu.Funeral.Application
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()

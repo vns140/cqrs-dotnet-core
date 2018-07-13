@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Fujitsu.Funeral.Infra.CrossCutting.IoC
+namespace CrossCutting.IoC
 {
     public static class Injector
     {

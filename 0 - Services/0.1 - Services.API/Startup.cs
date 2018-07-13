@@ -16,20 +16,34 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Collections.Generic;
 using System.Globalization;
-using Fujitsu.Funeral.Infra.CrossCutting.IoC;
+using CrossCutting.IoC;
 
-namespace Fujitsu.Funeral.Application
+namespace Services.API
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
         public IConfiguration _configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>       
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper();
@@ -121,8 +135,12 @@ namespace Fujitsu.Funeral.Application
 
             Injector.InitApplicationService(services);
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {   
             if (env.IsDevelopment())
