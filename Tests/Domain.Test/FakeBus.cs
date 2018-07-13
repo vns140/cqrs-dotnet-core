@@ -26,7 +26,7 @@ namespace Domain.Test
             if (msgType.Equals("DomainNotification"))
             {
                 var obj = new DomainNotificationHandler();
-                ((IDomainNotificationHandler<T>)obj).HandleAsync(message);
+                ((IDomainNotificationHandler<T>)obj).Handle(message);
             }
 
             if (msgType.Equals("CreateCarCommand") ||
@@ -34,7 +34,7 @@ namespace Domain.Test
                 msgType.Equals("UpdateCarCommand"))
             {
                 var obj = new CarCommandHandler(new FakeRepository(),new FakeUow(),new FakeBus(),new DomainNotificationHandler());
-                ((IHandler<T>)obj).HandleAsync(message);
+                ((IHandler<T>)obj).Handle(message);
             }
 
             if (msgType.Equals("CreateCarEvent") ||
@@ -42,7 +42,7 @@ namespace Domain.Test
                 msgType.Equals("UpdateCarEvent"))
             {
                 var obj = new CarEventHandler();
-                ((IHandler<T>)obj).HandleAsync(message);
+                ((IHandler<T>)obj).Handle(message);
             }
 
 

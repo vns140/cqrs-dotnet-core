@@ -29,7 +29,7 @@ namespace Domain.Commands.Cars
             _bus = bus;
         }
 
-        public async Task HandleAsync(CreateCarCommand message)
+        public async void Handle(CreateCarCommand message)
         {
             var car = Car.Factory.NewCreate(message.Name, message.Price, message.Status, message.Tenant);
 
@@ -47,7 +47,7 @@ namespace Domain.Commands.Cars
                 _bus.RaiseEvent(new CreateCarEvent(car.ID, car.Name, car.Price, car.Status, car.Tenant));
             }
         }
-        public async Task HandleAsync(UpdateCarCommand message)
+        public async void Handle(UpdateCarCommand message)
         {
 
             if (!await Exist(message.ID, message.MessageType)) return;
@@ -68,7 +68,7 @@ namespace Domain.Commands.Cars
                 _bus.RaiseEvent(new UpdateCarEvent(car.ID, car.Name, car.Price, car.Status));
             }
         }
-        public async Task HandleAsync(DeleteCarCommand message)
+        public async void Handle(DeleteCarCommand message)
         {
             if (!await Exist(message.ID, message.MessageType)) return;
 

@@ -19,7 +19,7 @@ namespace Domain.Shared.Notifications
             return _notifications;
         }
 
-        public async Task HandleAsync(DomainNotification message)
+        public void Handle(DomainNotification message)
         {
             _notifications.Add(message);
              Console.WriteLine($"Erro: {message.Key} - {message.Value}", ConsoleColor.Green);
