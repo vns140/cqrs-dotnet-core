@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ProjectGuid>{6E48765E-D6AC-4A79-9C2E-B5EE67EEDECF}</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.2" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc3" />
+    <PackageReference Include="NLog" Version="4.5.0-rc06" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.0-preview1-final" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\3 - Infra\3.2 - CrossCutting\3.2.1 - CrossCutting.IoC\CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\..\1 - Application\Application.csproj" />
+  </ItemGroup>
+
+<Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
+    <ItemGroup>
+      <DocFile Include="bin\$(Configuration)\$(TargetFramework)\*.xml" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DocFile)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="false" />
+  </Target>
+
+<!-- Added by Visual Studio, Visual Studio for Mac, or hand code in other IDE -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\api-g36.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DocumentationFile>bin\Release\netcoreapp2.0\api-g36.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>

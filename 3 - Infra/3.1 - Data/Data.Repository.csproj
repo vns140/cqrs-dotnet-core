@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2 - Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\2.1 - Domain.Shared\Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+ 
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+       <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.1.0-preview1-final" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.8.3" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProjectGuid>{845D2B72-D8A4-42E5-9BE9-17639EC4FC1A}</ProjectGuid>
+  </PropertyGroup>
+
+</Project>

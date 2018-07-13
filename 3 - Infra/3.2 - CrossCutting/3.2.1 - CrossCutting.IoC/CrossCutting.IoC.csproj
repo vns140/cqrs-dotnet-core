@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\2 - Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\..\2.1 - Domain.Shared\Domain.Shared.csproj" />
+    <ProjectReference Include="..\..\..\1 - Application\Application.csproj" />
+  </ItemGroup>
+
+ <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>

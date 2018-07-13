@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ProjectGuid>{0B68298B-4672-4CA0-AD25-2F9ABEA1FF99}</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
+    
   </ItemGroup>
 
 </Project>
