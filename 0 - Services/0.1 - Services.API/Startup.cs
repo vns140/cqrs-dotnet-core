@@ -17,6 +17,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Collections.Generic;
 using System.Globalization;
 using CrossCutting.IoC;
+using MediatR;
 
 namespace Services.API
 {
@@ -129,11 +130,9 @@ namespace Services.API
                  = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();              
             });
 
-            Injector.InitRepository(services);
-
-            Injector.InitDomainService(services);
-
-            Injector.InitApplicationService(services);
+            services.AddMediatR(typeof(Startup));
+            
+            services.AddInjectorProject();
         }
         
         /// <summary>

@@ -1,9 +1,10 @@
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Domain.Shared.Events
 {
     public interface IHandler<in T> where T : Message
     {
-        void Handle(T message);
+        Task Handle(T message, CancellationToken cancellationToken);
     }
 }

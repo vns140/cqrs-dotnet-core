@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Domain.Shared.Events;
 
@@ -19,16 +20,15 @@ namespace Domain.Shared.Notifications
             return _notifications;
         }
 
-        public void Handle(DomainNotification message)
+        public async Task Handle(DomainNotification message, CancellationToken cancellationToken)
         {
             _notifications.Add(message);
-             Console.WriteLine($"Erro: {message.Key} - {message.Value}", ConsoleColor.Green);
-            
+            Console.WriteLine($"Erro: {message.Key} - {message.Value}", ConsoleColor.Green);
         }
 
         public bool HasNotifications()
         {
-            return _notifications.Any(); 
+            return _notifications.Any();
         }
 
         public void Dispose()
@@ -36,6 +36,6 @@ namespace Domain.Shared.Notifications
             _notifications = new List<DomainNotification>();
         }
 
-        
+
     }
 }

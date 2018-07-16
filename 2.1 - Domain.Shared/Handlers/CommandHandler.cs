@@ -5,7 +5,7 @@ using Domain.Shared.Interfaces.Repositories;
 using Domain.Shared.Notifications;
 using FluentValidation.Results;
 
-namespace Domain.Shared.CommandHandlers
+namespace Domain.Shared.Handlers
 {
     public abstract class CommandHandler
     {

@@ -5,17 +5,19 @@ using Domain.Entities.Cars;
 using Domain.Events.Cars;
 using Domain.Interfaces.Repositories.Cars;
 using Domain.Shared.Bus;
-using Domain.Shared.CommandHandlers;
+using Domain.Shared.Handlers;
 using Domain.Shared.Events;
 using Domain.Shared.Interfaces.Repositories;
 using Domain.Shared.Notifications;
+using System.Threading;
+using MediatR;
 
 namespace Domain.Commands.Cars
 {
     public class CarCommandHandler : CommandHandler,
-    IHandler<CreateCarCommand>,
-    IHandler<UpdateCarCommand>,
-    IHandler<DeleteCarCommand>
+    INotificationHandler<CreateCarCommand>,
+    INotificationHandler<UpdateCarCommand>,
+    INotificationHandler<DeleteCarCommand>
     {
         private readonly ICarRepository _carRepository;
         private readonly IBus _bus;
@@ -29,7 +31,7 @@ namespace Domain.Commands.Cars
             _bus = bus;
         }
 
-        public async void Handle(CreateCarCommand message)
+        public async Task Handle(CreateCarCommand message, CancellationToken cancellationToken)
         {
             var car = Car.Factory.NewCreate(message.Name, message.Price, message.Status, message.Tenant);
 
@@ -47,7 +49,7 @@ namespace Domain.Commands.Cars
                 _bus.RaiseEvent(new CreateCarEvent(car.ID, car.Name, car.Price, car.Status, car.Tenant));
             }
         }
-        public async void Handle(UpdateCarCommand message)
+        public async Task Handle(UpdateCarCommand message, CancellationToken cancellationToken)
         {
 
             if (!await Exist(message.ID, message.MessageType)) return;
@@ -68,7 +70,7 @@ namespace Domain.Commands.Cars
                 _bus.RaiseEvent(new UpdateCarEvent(car.ID, car.Name, car.Price, car.Status));
             }
         }
-        public async void Handle(DeleteCarCommand message)
+        public async Task Handle(DeleteCarCommand message, CancellationToken cancellationToken)
         {
             if (!await Exist(message.ID, message.MessageType)) return;
 
